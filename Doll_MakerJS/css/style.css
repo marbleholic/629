@@ -1,0 +1,258 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'kurobara_gothic';
+    src: url(kurobara-gothic-medium2.ttf);
+  }
+html{
+    overflow: auto;
+}
+body{
+    /*横向きのスクロールバーを非表示にする*/
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: serif;
+    color: #fff;
+    background-color: #000;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    color:#c00;
+}
+/* top */
+.g_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+}
+.g_text {
+    text-align: center;
+    font-size: 30px;
+}
+.hero {
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url(../img/lost_place.jpg);
+    height: 100vh;
+    width: 100%;
+}
+/* tutorial */
+.t_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    font-size: 28px;
+}
+.t_text {
+    text-align: center;
+    font-size: 20px;
+}
+/* prologue */
+.p_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    font-size: 28px;
+}
+.p_text {
+    text-align: center;
+    font-size: 22px;
+    font-family: 'kurobara_gothic';
+}
+/* main */
+#screen{
+    position: relative;
+    width: 900px;
+    height: 675px;
+    margin: 20px auto;
+    background-color: #000;
+    /*画面内に配置した物のはみ出した部分が非表示になる*/
+    overflow: hidden;
+}
+#bgimg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /*アスペクト比を維持*/
+    object-fit: cover;
+}
+.itembox{
+    position: absolute;
+    width: 580px;
+    height: 420px;
+    top: 30px;
+    left: 160px;
+    text-align: center;
+    z-index: 2;
+}
+.charaposition{
+    position: absolute;
+    width: 300px;
+    height: 675px;
+    top: 20px;
+    text-align: center;
+    /* はみ出した部分は非表示にする */
+    overflow: hidden;
+    /* HTML要素の重なり順は下から二番目 */
+    z-index: 2;
+}
+#charaposition1{/*一人、三人表示*/
+    left: 300px;
+}
+#charaposition2{/*二人表示*/
+    left: 140px;
+}
+#charaposition3{/*二人表示*/
+    left: 460px;
+}
+#charaposition4{/*三人表示*/
+    left: 0;
+}
+#charaposition5{/*三人表示*/
+    left: 600px;
+}
+#messbox{
+    /* テキストボックス */
+    /* 画面の上から460px、縦中央に配置 */
+    position: absolute;
+    opacity: 0.6;
+    /* 枠の大きさは横850px、縦160px */
+    width: 850px;
+    height: 160px;
+    top: 460px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    background-color: #003;
+    /* 黒枠を描画する */
+    border: double 10px #900;
+    /* テキストボックスを下から3番目に配置 */
+    z-index: 3;
+}
+#textbox{
+    width: 800px;
+    height: 140px;
+    /* 余白を縦方向に-10px、横方向は自動調節（中央配置） */
+    margin: -10px auto;
+}
+#text{
+    color: #fff;
+    font-size: 1.3rem;
+    font-family: serif;
+}
+/* 選択肢 */
+.selectBox{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* はじめ、非表示にしておく */
+    display: none;
+}
+.select{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: #000;
+    border: solid 5px #900;
+    border-radius: 20px 50px;
+    box-shadow: inset -2px -2px 4px 4px rgba(0,0,0,.5),2px 2px 4px 4px rgba(0,0,0,.5);
+}
+/* 選択肢の表示位置 */
+#select1{
+    /*top: 50px;*/
+    top: 100px;
+}
+#select2{
+    top: 200px;
+}
+#select3{
+    top: 350px;
+}
+/* 選択ボックス */
+.selectText{
+    margin: 15px auto;
+    text-align: center;
+    color: #fff;
+    font-size: 1.3rem;
+}
+.show{
+    display: block;
+    z-index: 10;
+}
+.none{
+    display: none;
+}
+/* フェードイン */
+@keyframes fadein{
+    /* 0％（アニメーションの開始）から
+    100％（アニメーションの終わり）までを指定する。
+    不透明度０（＝透明）から不透明度１（＝通常の画像）に
+    するまでを指定 */
+    0%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
+}
+.fadein{
+    /* 使用するkeyframes */
+    animation-name: fadein;
+    /* アニメーションの最後の値を保持
+    （画像が表示されっぱなしになる） */
+    animation-fill-mode: forwards;
+    /* アニメーション1回あたりの再生時間（0.5秒） */
+    animation-duration: .5s;
+    /* アニメーションの再生方法
+    （均一な速度で再生）*/
+    animation-timing-function: ease;
+}
+/* フェードアウト */
+@keyframes fadeout{
+    0%{
+        opacity: 1;
+    }100%{
+        opacity: 0;
+    }
+}
+.fadeout{
+    animation-name: fadeout;
+    animation-fill-mode: forwards;
+    animation-duration: .5s;
+    animation-timing-function: ease;
+}
+/* フェードアウト～フェードイン
+表示されている画像を暗転させながら切り替える
+場面を切り替え時 */
+@keyframes fadeoutin{
+    0%{
+        opacity: 1;
+    /* 中間地点で一度画像が透明になる */
+    }50%{
+        opacity: 0;
+    /* 終わりに近づくにつれて不透明度が戻る */
+    }100%{
+        opacity: 1;
+    }
+}
+.fadeoutin{
+    animation-name: fadeoutin;
+    animation-fill-mode: forwards;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+}
